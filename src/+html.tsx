@@ -1,13 +1,8 @@
 
-import {
-  useServerDocumentContext,
-} from "expo-router/html";
-
+import { useServerDocumentContext } from "expo-router/html";
 import type { PropsWithChildren } from "react";
 
-export default function Root({
-  children,
-}: PropsWithChildren) {
+export default function Root({ children }: PropsWithChildren) {
   const {
     headNodes,
     bodyNodes,
@@ -27,34 +22,18 @@ export default function Root({
 
         <title>Hunter System</title>
 
-        <meta
-          name="theme-color"
-          content="#101116"
-        />
+        <meta name="theme-color" content="#101116" />
 
-        <meta
-          name="apple-mobile-web-app-capable"
-          content="yes"
-        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Hunter System" />
 
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
-
-        <meta
-          name="apple-mobile-web-app-title"
-          content="Hunter"
-        />
-
-        <link
-          rel="manifest"
-          href="/manifest.json"
-        />
+        <link rel="manifest" href="/manifest.json" />
 
         <link
           rel="apple-touch-icon"
-          href="/hunter-192.png"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
         />
 
         {headNodes}
