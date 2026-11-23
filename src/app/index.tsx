@@ -357,6 +357,10 @@ export default function App() {
         ))}
       </View>
 
+            <Text style={{ color: "red", fontSize: 16 }}>
+        ÉCRAN ACTUEL : {view}
+      </Text>
+
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
 
         {/* VIEW: Ajouter */}
