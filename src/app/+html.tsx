@@ -42,7 +42,11 @@ export default function Root({ children }: PropsWithChildren) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ("serviceWorker" in navigator) {
+           if (
+  "serviceWorker" in navigator &&
+  location.hostname !== "localhost" &&
+  location.hostname !== "127.0.0.1"
+) {
                 const registerServiceWorker = () => {
                   navigator.serviceWorker
                     .register("/sw.js")

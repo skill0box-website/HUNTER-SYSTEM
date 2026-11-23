@@ -35,7 +35,7 @@
     "typescript": "~6.0.3",
     "workbox-cli": "^7.4.1"
   },
-  "scripts": {
+"scripts": {
   "start": "expo start",
   "reset-project": "node ./scripts/reset-project.js",
   "android": "expo start --android",
@@ -44,5 +44,5 @@
   "lint": "expo lint",
   "build:web": "npx expo export --platform web && npx workbox-cli generateSW workbox-config.js"
 },
-  "private": true
+"private": true
 }

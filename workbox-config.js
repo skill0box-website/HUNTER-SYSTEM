@@ -1,13 +1,8 @@
-
 module.exports = {
   globDirectory: "dist",
 
   globPatterns: [
     "**/*.{html,json,png,ico,js,mp3}"
-  ],
-
-  globIgnores: [
-    "sw.js"
   ],
 
   swDest: "dist/sw.js",
@@ -16,7 +11,7 @@ module.exports = {
   skipWaiting: true,
   cleanupOutdatedCaches: true,
 
-  navigateFallback: "/index.html",
+  navigateFallback: "index.html",
 
   ignoreURLParametersMatching: [
     /^utm_/,
