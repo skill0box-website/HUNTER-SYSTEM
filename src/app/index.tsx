@@ -16,8 +16,6 @@ import { useHunterSounds } from "../hooks/useHunterSounds";
 
 const { width } = Dimensions.get("window");
 
-
-
 const RANKS = [
   { name: "E", label: "Rookie", minXP: 0, color: "#888780", bg: "#F1EFE8", bounty: 0 },
   { name: "D", label: "Prospect", minXP: 500000, color: "#3B6D11", bg: "#EAF3DE", bounty: 50000 },
@@ -188,7 +186,7 @@ const TRAIN_FIELDS: { key: TrainStatKey; label: string; xp: number }[] = [
 export default function App() {
   const [totalXP, setTotalXP] = useState(0);
   const [sessions, setSessions] = useState<Session[]>([]);
-  const [view, setView] = useState<ViewName>("ajouter");
+  const [view, setView] = useState<ViewName>("dashboard");
   const [mode, setMode] = useState<Mode>("match");
   const [matchForm, setMatchForm] = useState<MatchForm>(initMatch);
   const [trainForm, setTrainForm] = useState<TrainForm>(initTrain);
@@ -310,40 +308,24 @@ export default function App() {
         </View>
       </View>
 
-
       {/* Rank Card */}
       <View style={[s.rankCard, { borderColor: rank.color }]}>
         <View style={[s.rankBadge, { backgroundColor: rank.color }]}>
-          <Text style={[s.rankBadgeText, { fontSize: rank.name.length > 2 ? 11 : 18 }]}>
-            {rank.name}
-          </Text>
+          <Text style={[s.rankBadgeText, { fontSize: rank.name.length > 2 ? 11 : 18 }]}>{rank.name}</Text>
         </View>
-
         <View style={{ flex: 1 }}>
           <View style={s.row}>
             <Text style={[s.rankLabel, { color: rank.color }]}>{rank.label}</Text>
             <Text style={s.sub}>{fmtXP(totalXP)} XP</Text>
           </View>
-
           <Text style={[s.sub, { marginTop: 6, marginBottom: 2 }]}>RANG</Text>
           <ProgressBar progress={rankPct} color={rank.color} />
-
           <View style={s.row}>
-            <Text style={[s.sub, { marginTop: 6, marginBottom: 2 }]}>
-              LVL {level}
-            </Text>
-            <Text style={[s.sub, { marginTop: 6, marginBottom: 2 }]}>
-              {fmtXP(totalXP % LEVEL_XP)} / {fmtXP(LEVEL_XP)}
-            </Text>
+            <Text style={[s.sub, { marginTop: 6, marginBottom: 2 }]}>LVL {level}</Text>
+            <Text style={[s.sub, { marginTop: 6, marginBottom: 2 }]}>{fmtXP(totalXP % LEVEL_XP)} / {fmtXP(LEVEL_XP)}</Text>
           </View>
-
           <ProgressBar progress={levelPct} color={C.glacier} />
-
-          {nextRank && (
-            <Text style={[s.sub, { marginTop: 4 }]}>
-              {fmtXP(nextRank.minXP - totalXP)} XP → Rang {nextRank.name}
-            </Text>
-          )}
+          {nextRank && <Text style={[s.sub, { marginTop: 4 }]}>{fmtXP(nextRank.minXP - totalXP)} XP → Rang {nextRank.name}</Text>}
         </View>
       </View>
 
@@ -367,11 +349,7 @@ export default function App() {
       {/* Nav */}
       <View style={s.nav}>
         {(["ajouter", "historique", "rangs"] as const).map(v => (
-          <TouchableOpacity
-            key={v}
-            style={[s.navBtn, view === v && s.navBtnActive]}
-            onPress={() => setView(v)}
-          >
+          <TouchableOpacity key={v} style={[s.navBtn, view === v && s.navBtnActive]} onPress={() => setView(v)}>
             <Text style={[s.navBtnText, view === v && s.navBtnTextActive]}>
               {v === "ajouter" ? "+ Session" : v === "historique" ? "Historique" : "Rangs"}
             </Text>
@@ -379,12 +357,11 @@ export default function App() {
         ))}
       </View>
 
-      {/* Contenu des écrans */}
-      <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{ paddingBottom: 32 }}
-        showsVerticalScrollIndicator={false}
-      >
+            <Text style={{ color: "red", fontSize: 16 }}>
+        ÉCRAN ACTUEL : {view}
+      </Text>
+
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
 
         {/* VIEW: Ajouter */}
         {view === "ajouter" && (
